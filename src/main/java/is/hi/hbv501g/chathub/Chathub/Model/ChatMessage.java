@@ -27,7 +27,7 @@ public class ChatMessage {
         this.content = content;
     }
 
-    public static String getSender() {
+    public String getSender() {
         return sender;
     }
 
