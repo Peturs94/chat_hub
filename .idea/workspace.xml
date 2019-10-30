@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd0402f6-6991-428a-bd63-72f9afb68507" name="Default Changelist" comment="">
+    <list default="true" id="af28198c-7c9d-4b6e-aefa-b948fc545239" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Configs/DatabaseConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/DatabaseConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501g/chathub/Chathub/Controllers/ChatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501g/chathub/Chathub/Controllers/ChatController.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +14,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -30,6 +27,7 @@
   <component name="ProjectId" id="1SKOpjqeahfKuZn0dWA59lmXg3Z" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -73,7 +71,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dd0402f6-6991-428a-bd63-72f9afb68507" name="Default Changelist" comment="" />
+      <changelist id="af28198c-7c9d-4b6e-aefa-b948fc545239" name="Default Changelist" comment="" />
       <created>1571428448546</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -81,11 +79,7 @@
       <workItem from="1571428450774" duration="5383000" />
       <workItem from="1571521766840" duration="2383000" />
       <workItem from="1571590042368" duration="381000" />
-      <workItem from="1571911330527" duration="344000" />
-      <workItem from="1572014430478" duration="4978000" />
-      <workItem from="1572208814748" duration="20000" />
-      <workItem from="1572209745199" duration="2238000" />
-      <workItem from="1572349531222" duration="816000" />
+      <workItem from="1572463566884" duration="5356000" />
     </task>
     <servers />
   </component>

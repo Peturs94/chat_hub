@@ -69,29 +69,18 @@ function sendMessage(event) {
 }
 
 function onMessageReceived(payload) {
-    console.log("ég er hér");
-    // spring fer aldrei hingað, skoða hvar kallað er í þetta fjall
     var message = JSON.parse(payload.body);
 
     var messageElement = document.createElement("li");
 
     if(message.type === "JOIN") {
-        messageElement.classList.add("event-message");
         message.content = message.sender + " joined!";
     } else if (message.type === 'LEAVE') {
-        messageElement.classList.add('event-message');
         message.content = message.sender + ' left!';
     } else {
-        messageElement.classList.add('chat-message');
 
-        var avatarElement = document.createElement('i');
-        var avatarText = document.createTextNode(message.sender[0]);
-        avatarElement.appendChild(avatarText);
-        avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
-        messageElement.appendChild(avatarElement);
-
-        var usernameElement = document.createElement('span');
+        var usernameElement = document.createElement('h4');
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
@@ -108,14 +97,7 @@ function onMessageReceived(payload) {
 
 }
 
-function getAvatarColor(messageSender) {
-    var hash = 0;
-    for (var i = 0; i < messageSender.length; i++) {
-        hash = 31 * hash + messageSender.charCodeAt(i);
-    }
-    var index = Math.abs(hash % colors.length);
-    return colors[index];
-}
+
 
 usernameForm.addEventListener('submit', connect, true);
 sendButton.addEventListener('click', sendMessage, true);
