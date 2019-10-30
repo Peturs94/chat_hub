@@ -76,7 +76,8 @@
         </div>
             <div class="modal-body row">
             <!-- List of chats/hubs-->
-            <div class="col-sm-2 border border-dark rounded bg-dark" id="col-hub">
+            <div class="col-sm-2 border border-dark rounded bg-white" id="col-hub">
+                <h2>---Hubs---</h2>
                 <ul class="list-group">
                     <li class="">Cras justo odio</li>
                     <li class="">Dapibus ac facilisis in</li>
@@ -88,7 +89,12 @@
             <!-- Chat Window-->
             <div class="col-sm-8 border border-dark rounded d-flex align-items-end" id="chatWindow">
                 <ul id="message-area">
+                    <div th:switch="${messages}">
+                        <h2 th:case="null"> No messages! </h2>
+                        <div th:case="*">
 
+                        </div>
+                    </div>
                 </ul>
                     <div class="input-group input-group-lg" >
                         <input id="message-input" type="text" class="form-control bg-light" placeholder="Message" aria-label="Message" aria-describedby="basic-addon2">
@@ -98,8 +104,11 @@
                     </div>
             </div>
             <!-- FriendList-->
-            <div class="col-sm-2 border border-dark rounded bg-dark" id="friendListColumn">
-                kalsfd
+            <div class="col-sm-2 border border-dark rounded bg-white" id="friendListColumn">
+                <h2>Friends!</h2>
+                <ul>
+
+                </ul>
             </div>
         </div>
     </div>    
