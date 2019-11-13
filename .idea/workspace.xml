@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af28198c-7c9d-4b6e-aefa-b948fc545239" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/chatting.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/chatting.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/Chathub.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501g/chathub/Chathub/Configs/DatabaseConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/is/hi/hbv501g/chathub/Chathub/Controllers/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/is/hi/hbv501g/chathub/Chathub/Controllers/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/chatting.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/chatting.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +34,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1SKOpjqeahfKuZn0dWA59lmXg3Z" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
@@ -35,6 +52,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -80,6 +98,10 @@
       <workItem from="1571521766840" duration="2383000" />
       <workItem from="1571590042368" duration="381000" />
       <workItem from="1572463566884" duration="5356000" />
+      <workItem from="1572519273121" duration="1278000" />
+      <workItem from="1573120313340" duration="81000" />
+      <workItem from="1573231590514" duration="9852000" />
+      <workItem from="1573664128262" duration="177000" />
     </task>
     <servers />
   </component>

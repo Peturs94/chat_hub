@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Chat Room | Any-Chat</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 </head>
-<body>
+<body style="background-color: #f1f1f1; padding-bottom: 0">
 
 <!-- Username page-->
 <div id="username-page">
@@ -21,8 +25,9 @@
     </div>
 </div>
 <!-- /Username tab-->
-
-<div th:switch="${messages}" id="chatWindow">
+<div class="col-md-8">
+    <div class="panel panel-primary">
+    <div th:switch="${messages}" id="chatWindow">
     <h2 th:case="null">No messages!</h2>
     <ul th:case="*" id="message-area">
         <li th:each="message : ${messages}">
@@ -49,7 +54,13 @@
             </div>
             -->
 
+        </div>
+    </div>
+
 </div>
+
+
+
 <input id="message-input" type="text" name="messageContent" placeholder="message"><button id="send-button" type="button">Send!</button>
 
 <script src="js/bootstrap.bundle.min.js"></script>
