@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- fonts -->
+    <link href="fonts/Roboto" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static.image/css/bootstrap/bootstrap/css/bootstrap.min.css" />
+    <title>Chathub</title>
+</head>
+<!-- Bara hægt að vera með 12 columns per row, so 4 col/12 = 3 => col-3 -->
+<style>
+    body {
+        background:lightblue !important;
+    }
+    * {
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
+<body>
+<div class="border bg-dark">
+    <ul class="nav justify-content-start">
+        <li class="nav-item">
+            <a class="nav-link active" href="#"><span class="text-white h4">Chathub</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#"><h2>About</h2></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#"><h2>LogIn</h2></a>
+        </li>
+    </ul>
+</div>
+
+<div class="container" style="margin-top: 60px">
+
+    <div class="row" style="margin-top: 60px">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-console"></span> New User </h3>
+                </div>
+                <div class="panel-body">
+                    <form onsubmit="return false">
+                        <div class="form-group" style="margin-top: 20px">
+                            <div class="input-group col-md-6 col-md-offset-3">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group col-md-6 col-md-offset-3">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="password">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group col-md-6 col-md-offset-3">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-education"></span></div>
+                                <input type="text" class="form-control" name="nickname" id="nickname" placeholder="nickname">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="input-group col-md-6 col-md-offset-3">
+                                <button class="btn btn-success btn-block" id="Complete">Complete</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-md-6 col-md-offset-3" style="text-align: center">
+                                <a href="/login"><span class="glyphicon glyphicon-triangle-left"></span>Return to the login page</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="../static.image/css/bootstrap/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
