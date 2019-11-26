@@ -1,19 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Signup</title>
-</head>
-<body>
-<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
-    <label for="uName">Username</label>
-    <input type="text" th:field="*{uName}" id="uName" placeholder="Username">
-    <span th:if="${#fields.hasErrors('uName')}" th:errors="*{uName}"></span>
-    <label for="password">Password</label>
-    <input type="text" th:field="*{password}" id="password" placeholder="password">
-    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-    <input type="submit" value="Sign up!">
-</form>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Account | Any-Chat</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
 
+</head>
+
+<body style="background-color: #f1f1f1; padding-bottom: 0">
+
+<div th:insert="~{header :: nav}"></div>
+
+<!-- Start Content -->
+<div class="container" style="margin-top: 60px">
+
+    <div class="row" style="margin-top: 60px">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-console"></span> New User </h3>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="#" th:action="@{/signup}" th:object="${user}" id="signupform">
+                        <div class="form-group" style="margin-top: 20px">
+                            <div class="input-group col-md-6 col-md-offset-3">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                <input type="text" class="form-control" th:field="*{uName}" name="username" id="username" placeholder="Username">
+                                <span th:if="${#fields.hasErrors('uName')}" th:errors="*{uName}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group col-md-6 col-md-offset-3">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                <input type="password" class="form-control" th:field="*{password}" name="password" id="password" placeholder="password">
+                                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                            </div>
+                        </div>
+                    </form>
+                        <br>
+                        <div class="form-group">
+                            <div class="input-group col-md-6 col-md-offset-3">
+                                <button class="btn btn-success btn-block" type="submit" form="signupform" value="Complete" id="Complete">Complete</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-md-6 col-md-offset-3" style="text-align: center">
+                                <a href="/login"><span class="glyphicon glyphicon-triangle-left"></span>Return to the login page</a>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- End Content -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
 </body>
+
 </html>

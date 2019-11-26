@@ -1,79 +1,206 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat Room</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+
+    <style>
+        .friend{
+            border: none;
+            background-color: #FFFFFF;
+            padding: 5px;
+        }
+
+        .friend:hover{
+            border: solid 1px #337AB7;
+            border-radius: 3px;
+        }
+
+        .f-nickname{
+            font-family: "Arial";
+        }
+
+        .f-image{
+            width: 43px;
+            height: 43px;
+        }
+
+        .message-box-left{
+            background-color: #FA8072;
+            color: #FFFFFF;
+            border-radius: 3px;
+            display: inline-block;
+            padding: 5px 10px;
+        }
+
+        .user-nickname{
+            margin-bottom: 2px;
+            display: inline-block;
+        }
+
+        .user-time{
+            margin-bottom: 2px;
+            display: inline-block;
+            color: #ADADAD;
+        }
+
+        .message-div{
+            float: left;
+            margin-left: 5px;
+            width: 100%;
+            margin-bottom: 5px;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
+<body style="background-color: #f1f1f1; padding-bottom: 0">
 
-<!-- Username page-->
-<!-- <div id="username-page">
-    <div class="username-page-container">
-        <h1 class="title">Type your username</h1>
-        <form id="usernameForm" name="usernameForm">
-            <div class="form-group">
-                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+<div th:insert="~{header :: nav}"></div>
+
+<!-- Start Content -->
+<div style="margin-top: 60px">
+
+    <div class="row center-block">
+
+        <div class="col-md-3">
+            <div class="panel panel-danger" >
+                <div class="panel-heading">
+                    <div style="display: inline-block; float: left;">
+                        <img th:src="@{/image/avatar/avatar0.jpg}" alt="" class="img-circle img-responsive" height="64px" width="64px" style="margin: 0 10px;"/>
+                    </div>
+                    <div style="display:inline-block; width: 200px; height: 64px;">
+                        <p style="margin: 0; padding: 6px 0; font-size: 20px" th:text="${thisUser.uName}" id="username"></p>
+                        <p style="margin-bottom: 0; overflow: hidden; height: 16px">Mood: Harry Potter</p>
+                    </div>
+                </div>
+                <div class="panel-body" style="height: 390px; overflow-y: scroll; overflow: auto">
+                    <div th:switch="${users}">
+                        <h4 th:case="null" th:text="No Users"></h4>
+                        <div th:case="*">
+                            <div th:each="user : ${users}">
+                                <a class="btn btn-outline-dark" role="button" th:if="${user.id ge thisUser.id}" th:href="'/chat/p' + ${(((user.id*2)*(user.id*2))+(user.id*2)+(thisUser.id*2))/2}">
+                                    <div class="media-left">
+                                        <div >
+                                            <img class="media-object f-image img-circle" src="/image/avatar/avatar0.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="media-body" style="text-align: left">
+                                        <h4 class="media-heading f-nickname" text="dude" th:text="${user.uName}"></h4>
+                                        <p class="text-danger f-signature" text="time: DD.MM.YY" >mood: Movies</p>
+                                        <p class="hidden f-username" text="dude">anoy</p>
+                                    </div>
+                                </a>
+                                <a class="btn btn-outline-dark" role="button" th:unless="${user.id ge thisUser.id}" th:href="'/chat/p' + ${(((thisUser.id*2)*(thisUser.id*2))+(thisUser.id*2)+(user.id*2))/2}">
+                                    <div class="media-left">
+                                        <div >
+                                            <img class="media-object f-image img-circle" src="/image/avatar/avatar0.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="media-body" style="text-align: left">
+                                        <h4 class="media-heading f-nickname" text="dude" th:text="${user.uName}"></h4>
+                                        <p class="text-danger f-signature" text="time: DD.MM.YY" >mood: Movies</p>
+                                        <p class="hidden f-username" text="dude">anoy</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="accent username-submit">Start Chatting</button>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title" th:text="'['+ ${thishub.name} + '] - [' "><span class="glyphicon glyphicon-console"></span> <span id="target">Everyone</span>]</h3>
+                </div>
+                <div class="panel-body" style="height: 380px; width:350px; overflow-y: scroll; overflow: auto" id="chatWindow">
+                    <div th:switch="${messages}">
+
+                            <ul th:case="null" class="message-area">
+
+                            </ul>
+                            <ul th:case="*" class="message-area">
+                                <li th:each="message : ${messages}">
+                                    <h4 th:text="${message.sender}"></h4>
+                                    <p th:text="${message.content}"></p>
+                                </li>
+                            </ul>
+
+
+                    </div>
+
+                </div>
+
             </div>
-        </form>
+
+            <div class="row">
+                <div class="col-xs-9 col-md-10">
+                    <input type="text" class="form-control" placeholder="Message" id="message-input">
+                </div>
+                <div class="col-xs-3 col-md-2">
+                    <button class="btn btn-primary btn-block" id="send-button"><span class="glyphicon glyphicon-send"></span> Send</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="col-md-3">
+
+            <div class="panel panel-danger" >
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <div class="row">
+                            <div class="col-md-4 glyphicon glyphicon-home"> Hubs</div>
+                            <div class="col-md-4 col-md-offset-4 btn btn-default" href="#" role="button">Create Hub</div>
+                        </div>
+                    </h3>
+                </div>
+                <div class="panel-body" style="height: 390px; overflow-y: scroll; overflow: auto">
+
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item">
+                            <i class="glyphicon glyphicon-th-large"></i> Hub1
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="glyphicon glyphicon-th-large"></i> Hub2
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="glyphicon glyphicon-th-large"></i> Hub3
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>-->
-<!-- /Username tab-->
 
-<h1 id="username" th:text="${thisUser.uName}"></h1>
-
-<!-- ChatWindow -->
-<div th:switch="${messages}" id="chatWindow">
-    <div th:case="null">
-        <h2 >No messages!</h2>
-        <ul class="message-area">
-
-        </ul>
-    </div>
-    <ul th:case="*" class="message-area">
-        <li th:each="message : ${messages}">
-            <h4 th:text="${message.sender}"></h4>
-            <p th:text="${message.content}"></p>
-        </li>
-    </ul>
 </div>
-
-<input id="message-input" type="text" name="messageContent" placeholder="message"><button id="send-button" th:class="${thishub.channelId}" type="button">Send!</button>
-<!-- /ChatWindow -->
-
-
-<!-- Hubs -->
-<div th:switch="${hubs}" id="hubWindow">
-    <h2 th:case="null">No Hubs!</h2>
-    <ul th:case="*" id="hub-area">
-        <li th:each="hub : ${hubs}">
-            <h4 th:text="${hub.name}"></h4>
-            <a th:id="${hub.channelId}" th:href="'/chat/c' + ${hub.channelId}" type="button">Go to hub</a>
-        </li>
-    </ul>
-</div>
-<!-- /Hubs -->
-
-<!-- Users -->
-<div th:switch="${users}" id="userWindow">
-    <h2 th:case="null">No Users!</h2>
-    <ul th:case="*" id="users-area">
-        <li th:each="user : ${users}">
-            <h4 th:text="${user.uName}"></h4>
-            <a class="get-user" th:if="${user.id ge thisUser.id}" th:href="'/chat/p' + ${(((user.id*2)*(user.id*2))+(user.id*2)+(thisUser.id*2))/2}">Chat With User</a>
-            <a class="get-user" th:unless="${user.id ge thisUser.id}" th:href="'/chat/p' + ${(((thisUser.id*2)*(thisUser.id*2))+(thisUser.id*2)+(user.id*2))/2}">Chat With User</a>
-        </li>
-    </ul>
-</div>
-<!-- /Users -->
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script th:src="@{../js/main.js}"></script>
 </body>
+
 </html>
