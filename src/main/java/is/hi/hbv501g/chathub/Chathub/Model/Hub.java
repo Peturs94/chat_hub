@@ -1,23 +1,33 @@
 package is.hi.hbv501g.chathub.Chathub.Model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.List;
 
 @Entity
 public class Hub {
-
+    private String name;
+    private String interest;
+    private String description;
+    //private String password;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    //private List<String> interests;
+    private String channelId;
+    private String channelType;
+    public Hub(){
 
-    public Hub(String name /*, List<String> interests*/) {
+    }
+
+    public Hub(String name, String interest, String description, String channelType, String channelId) {
         this.name = name;
-        //this.interests = interests;
+        this.interest = interest;
+        this.description = description;
+        this.channelType = channelType;
+        this.channelId = channelId;
     }
 
     public String getName() {
@@ -28,19 +38,43 @@ public class Hub {
         this.name = name;
     }
 
-    /*public List<String> getInterests() {
-        return interests;
-    }*/
+    public String getInterest() {
+        return interest;
+    }
 
-    //?? viljum við hafa þetta?
-    /*public void addInterests(List<String> addedInterests) {
-        List<String> currentInterests = this.interests;
-        currentInterests.addAll(addedInterests);
-        this.interests = currentInterests;
-    }*/
+    public void setInterest(String interest) {
+        this.interest = interest;
+    }
 
-    //??
-    /*public void removeInterests(){
+    public String getDescription() {
+        return description;
+    }
 
-    }*/
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
+
+    public String getChannelType() {
+        return channelType;
+    }
+
+    public void setChannelType(String channelType) {
+        this.channelType = channelType;
+    }
 }

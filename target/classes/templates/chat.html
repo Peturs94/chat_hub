@@ -1,130 +1,79 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- fonts -->
-    <link href="font/Roboto" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css" />
-    <title>Chathub</title>
-  </head>
-  <!-- Bara hægt að vera með 12 columns per row, so 4 col/12 = 3 => col-3 -->
-  <style>
-      body {
-          background:lightblue !important;
-      }
-      * {
-            font-family: 'Roboto', sans-serif;
-        }
-      #chatWindow {
-          border-width: 2px !important; 
-      }
-      #col-hub {
-          height: 650px !important;
-      }
-      #chatWindow {
-          height: 650px !important;
-      }
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
-      #friendListColumn {
-          height: 650px !important;
-      }
-  </style>
-  <body>
-    <!--Navbar-->
-    <div class="pos-f-t">
-            <div class="collapse" id="navbarToggleExternalContent">
-              <div class="bg-dark p-4">
-                <h5 class="text-white h4">Notandanafn</h5>
-                <a href="#"><span class="text-muted">Settings</span></a><br/>
-                <a href="#"><span class="text-muted">Signout</span></a><br/>
-              </div>
+<!-- Username page-->
+<!-- <div id="username-page">
+    <div class="username-page-container">
+        <h1 class="title">Type your username</h1>
+        <form id="usernameForm" name="usernameForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
             </div>
-            <nav class="navbar navbar-dark bg-dark justify-content-between">
-              <a href="#"><span class="text-white h4">Chathub</span></a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            </nav>
+            <div class="form-group">
+                <button type="submit" class="accent username-submit">Start Chatting</button>
+            </div>
+        </form>
     </div>
-    <!--/.Navbar-->
+</div>-->
+<!-- /Username tab-->
 
-    <!-- Username page-->
-    <div id="username-page">
-        <div class="username-page-container">
-            <h1 class="title">Hype your username</h1>
-            <form id="usernameForm" name="usernameForm">
-                <div class="form-group">
-                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="accent username-submit">Start Chatting</button>
-                </div>
-            </form>
-        </div>
+<h1 id="username" th:text="${thisUser.uName}"></h1>
+
+<!-- ChatWindow -->
+<div th:switch="${messages}" id="chatWindow">
+    <div th:case="null">
+        <h2 >No messages!</h2>
+        <ul class="message-area">
+
+        </ul>
     </div>
-    <!-- /Username tab-->
+    <ul th:case="*" class="message-area">
+        <li th:each="message : ${messages}">
+            <h4 th:text="${message.sender}"></h4>
+            <p th:text="${message.content}"></p>
+        </li>
+    </ul>
+</div>
 
-    <!-- Content -->
-    <!-- hægt að nota modal-body row ?-->
-    <div id ="chat-container" class="container-fluid" >
-        <div class="connecting">
-            Connecting...
-        </div>
-            <div class="modal-body row">
-            <!-- List of chats/hubs-->
-            <div class="col-sm-2 border border-dark rounded bg-white" id="col-hub">
-                <h2>---Hubs---</h2>
-                <ul class="list-group">
-                    <li class="">Cras justo odio</li>
-                    <li class="">Dapibus ac facilisis in</li>
-                    <li class="">Morbi leo risus</li>
-                    <li class="">Porta ac consectetur ac</li>
-                    <li class="">Vestibulum at eros</li>
-                </ul>    
-            </div>
-            <!-- Chat Window-->
-            <div class="col-sm-8 border border-dark rounded d-flex align-items-end" id="chatWindow">
-                <ul id="message-area">
-                    <div th:switch="${messages}">
-                        <h2 th:case="null"> No messages! </h2>
-                        <div th:case="*">
-
-                        </div>
-                    </div>
-                </ul>
-                    <div class="input-group input-group-lg" >
-                        <input id="message-input" type="text" class="form-control bg-light" placeholder="Message" aria-label="Message" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                        <button id ="send-button" class="btn btn-outline-secondary" type="button">Send</button>
-                        </div>
-                    </div>
-            </div>
-            <!-- FriendList-->
-            <div class="col-sm-2 border border-dark rounded bg-white" id="friendListColumn">
-                <h2>Friends!</h2>
-                <ul>
-
-                </ul>
-            </div>
-        </div>
-    </div>    
-    
-    <!-- /.Content-->
+<input id="message-input" type="text" name="messageContent" placeholder="message"><button id="send-button" th:class="${thishub.channelId}" type="button">Send!</button>
+<!-- /ChatWindow -->
 
 
+<!-- Hubs -->
+<div th:switch="${hubs}" id="hubWindow">
+    <h2 th:case="null">No Hubs!</h2>
+    <ul th:case="*" id="hub-area">
+        <li th:each="hub : ${hubs}">
+            <h4 th:text="${hub.name}"></h4>
+            <a th:id="${hub.channelId}" th:href="'/chat/c' + ${hub.channelId}" type="button">Go to hub</a>
+        </li>
+    </ul>
+</div>
+<!-- /Hubs -->
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script th:src="@{js/main.js}"></script>
-  </body>
+<!-- Users -->
+<div th:switch="${users}" id="userWindow">
+    <h2 th:case="null">No Users!</h2>
+    <ul th:case="*" id="users-area">
+        <li th:each="user : ${users}">
+            <h4 th:text="${user.uName}"></h4>
+            <a class="get-user" th:if="${user.id ge thisUser.id}" th:href="'/chat/p' + ${(((user.id*2)*(user.id*2))+(user.id*2)+(thisUser.id*2))/2}">Chat With User</a>
+            <a class="get-user" th:unless="${user.id ge thisUser.id}" th:href="'/chat/p' + ${(((thisUser.id*2)*(thisUser.id*2))+(thisUser.id*2)+(user.id*2))/2}">Chat With User</a>
+        </li>
+    </ul>
+</div>
+<!-- /Users -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{../js/main.js}"></script>
+</body>
 </html>

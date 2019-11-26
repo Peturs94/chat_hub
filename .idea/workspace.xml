@@ -2,12 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af28198c-7c9d-4b6e-aefa-b948fc545239" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controller/ChatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controller/HubController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controller/WebSocketEventListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Configs/WebSocketConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/ChatController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/HomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Controllers/WebSocketEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Model/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Model/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Model/Hub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Model/Hub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/Model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/repository/ChatRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/service/ChatService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/service/implementation/ChatServiceImplementation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/service/implementation/UserServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/is/hi/hbv501g/chathub/Chathub/service/implementation/UserServiceImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/is/hi/hbv501g/chathub/Chathub/ChathubApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/is/hi/hbv501g/chathub/Chathub/ChathubApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap-grid.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap-grid.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap-grid.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap-grid.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap-reboot.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap-reboot.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap-reboot.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap-reboot.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap/bootstrap.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-BlackItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-BoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-Italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-LightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-MediumItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/font/Roboto/Roboto-ThinItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.bundle.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.bundle.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.bundle.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/chat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/chatting.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/chatting.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/chatting.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/username.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/username.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/username.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/is/hi/hbv501g/chathub/Chathub/ChathubApplicationTests.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,6 +165,7 @@
       <workItem from="1574444806230" duration="608000" />
       <workItem from="1574514155810" duration="1088000" />
       <workItem from="1574521700096" duration="4304000" />
+      <workItem from="1574772014243" duration="1222000" />
     </task>
     <servers />
   </component>
