@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Signup</title>
 </head>
 <body>
-<form action="#" th:action="@{/login}" th:object="${user}" method="post">
+<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
     <label for="uName">Username</label>
     <input type="text" th:field="*{uName}" id="uName" placeholder="Username">
     <span th:if="${#fields.hasErrors('uName')}" th:errors="*{uName}"></span>
     <label for="password">Password</label>
     <input type="text" th:field="*{password}" id="password" placeholder="password">
     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-    <input type="submit" value="Login!">
+    <input type="submit" value="Sign up!">
 </form>
 
 </body>

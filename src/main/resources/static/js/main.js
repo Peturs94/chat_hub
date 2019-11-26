@@ -1,55 +1,56 @@
 //'use strict' lint?
 
-var usernamePage = document.querySelector("#username-page");
+//var usernamePage = document.querySelector("#username-page");
 var chatContainer = document.querySelector("#chat-container");
 var messageInput = document.querySelector("#message-input");
 var connectingElement = document.querySelector(".connecting");
 var chatWindow = document.querySelector("#chatWindow");
-var usernameForm = document.querySelector("#usernameForm");
-var messageArea = document.querySelector("#message-area");
+//var usernameForm = document.querySelector("#usernameForm");
+var messageArea = document.querySelector(".message-area");
 var sendButton = document.querySelector("#send-button");
 
 var stompClient = null;
 var username = null;
+var hubId = null;
 
-var colors = [
-    '#2196F3', '#32c787', '#00BCD4', '#ff5652',
-    '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
-];
 
 function connect(event) {
-    username = document.querySelector("#name").value.trim();
+    username = document.querySelector("#username").innerHTML;
 
-    if(username){
-        usernamePage.style.display = "none";
-        chatWindow.classList.remove("container-fluid");
+   // if(username){
+        //usernamePage.style.display = "none";
+        //chatWindow.classList.remove("container-fluid");
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
-    }
+   // }
     event.preventDefault();
 }
 
 
 function onConnected(){
     // Subscribe to the public topic
-    stompClient.subscribe("/topic/public", onMessageReceived);
+    hubId = sendButton.className;
+    console.log("/topic/public/" + hubId);
+    var sub1 = stompClient.subscribe("/topic/public/" + hubId, onMessageReceived);
 
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
         {},
         JSON.stringify({sender: username,
-                               type: "JOIN" })
+            channelId: hubId,
+            type: "JOIN" })
     );
 
-    connectingElement.style.display = "none";
+    //connectingElement.style.display = "none";
 }
 
 function onError(error) {
-    connectingElement.textContent = "Could not connect to websocket server. PLease refresh";
-    connectingElement.style.color = "red";
+    //connectingElement.textContent = "Could not connect to websocket server. PLease refresh";
+    //connectingElement.style.color = "red";
+    console.log(error);
 }
 
 
@@ -60,13 +61,18 @@ function sendMessage(event) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
-            type: "CHAT"
+            type: "CHAT",
+            channelId: hubId
         };
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        console.log(JSON.stringify(chatMessage));
         messageInput.value = "";
     }
     event.preventDefault();
+    // hér er einhvað í gangi og í onmessagereceived.
 }
+
+
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
@@ -91,13 +97,15 @@ function onMessageReceived(payload) {
     textElement.appendChild(messageText);
 
     messageElement.appendChild(textElement);
+    console.log(message.channelId);
 
     messageArea.appendChild(messageElement);
+
     messageArea.scrollTop = messageArea.scrollHeight;
 
 }
 
 
-
-usernameForm.addEventListener('submit', connect, true);
+window.onload = connect;
+//usernameForm.addEventListener('submit', connect, true);
 sendButton.addEventListener('click', sendMessage, true);
