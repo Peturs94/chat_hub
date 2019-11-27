@@ -26,33 +26,6 @@
             width: 43px;
             height: 43px;
         }
-
-        .message-box-left{
-            background-color: #FA8072;
-            color: #FFFFFF;
-            border-radius: 3px;
-            display: inline-block;
-            padding: 5px 10px;
-        }
-
-        .user-nickname{
-            margin-bottom: 2px;
-            display: inline-block;
-        }
-
-        .user-time{
-            margin-bottom: 2px;
-            display: inline-block;
-            color: #ADADAD;
-        }
-
-        .message-div{
-            float: left;
-            margin-left: 5px;
-            width: 100%;
-            margin-bottom: 5px;
-            position: relative;
-        }
     </style>
 </head>
 <body>
@@ -64,7 +37,7 @@
 <div style="margin-top: 60px">
 
     <div class="row center-block">
-
+        <!-- User section -->
         <div class="col-md-3">
             <div class="panel panel-danger" >
                 <div class="panel-heading">
@@ -76,7 +49,7 @@
                         <p style="margin-bottom: 0; overflow: hidden; height: 16px" th:text="'Your mood: ' + ${thisUser.mood}"></p>
                     </div>
                 </div>
-                <div class="panel-body" style="height: 390px; overflow-y: scroll; overflow: auto">
+                <div class="panel-body" style="height: 333px; width:350px; overflow-y: scroll; overflow: auto">
                     <div th:switch="${users}">
                         <h4 th:case="null" th:text="No Users"></h4>
                         <div th:case="*">
@@ -110,15 +83,21 @@
                     </div>
                 </div>
             </div>
+            <!-- User section end-->
+            <!-- Change Mood component -->
+            <div class="row">
+                <div class="col-xs-5 col-md-8">
+                    <form action="#" th:action="@{/changemood}" th:object="${mood}" method="post" id="moodform">
+                        <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Mood">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </form>
+                </div>
+                <div class="col-xs-4">
+                    <button type="submit" form="moodform" class="btn btn-primary btn-block">Change Mood</button>
+                </div>
+            </div>
         </div>
-
-
-
-
-
-
-
-
+        <!-- Chatwindow section -->
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -126,9 +105,7 @@
                 </div>
                 <div class="panel-body" style="height: 380px; width:350px; overflow-y: scroll; overflow: auto" id="chatWindow">
                     <div th:switch="${messages}">
-
                             <ul th:case="null" class="message-area">
-
                             </ul>
                             <ul th:case="*" class="message-area">
                                 <li th:each="message : ${messages}">
@@ -136,12 +113,8 @@
                                     <p th:text="${message.content}"></p>
                                 </li>
                             </ul>
-
-
                     </div>
-
                 </div>
-
             </div>
 
             <div class="row">
@@ -156,15 +129,8 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
+        <!-- ChatWindow section end -->
+        <!-- Hub section -->
         <div class="col-md-3">
 
             <div class="panel panel-danger" >
@@ -178,7 +144,7 @@
                         </div>
                     </h3>
                 </div>
-                <div class="panel-body" style="height: 390px; overflow-y: scroll; overflow: auto">
+                <div class="panel-body" style="height: 416px; overflow-y: scroll; overflow: auto">
 
                     <div class="list-group list-group-flush" th:switch="${hubs}">
                         <div th:case="null">
@@ -197,20 +163,10 @@
                 </div>
             </div>
         </div>
+        <!-- Hub section end-->
 
     </div>
 
-    <div class="row">
-        <div class="col-3">
-            <form action="#" th:action="@{/changemood}" th:object="${mood}" method="post" id="moodform">
-                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Mood">
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-            </form>
-            <div class="input-group col-md-6 col-md-offset-3">
-                <button type="submit" form="moodform" class="btn btn-primary btn-block">Change Your Mood</button>
-            </div>
-        </div>
-    </div>
 
 </div>
 <!-- Bootstrap core JavaScript
