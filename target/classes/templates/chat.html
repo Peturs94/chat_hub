@@ -73,7 +73,7 @@
                     </div>
                     <div style="display:inline-block; width: 200px; height: 64px;">
                         <p style="margin: 0; padding: 6px 0; font-size: 20px" th:text="${thisUser.uName}" id="username"></p>
-                        <p style="margin-bottom: 0; overflow: hidden; height: 16px">Mood: Harry Potter</p>
+                        <p style="margin-bottom: 0; overflow: hidden; height: 16px" th:text="'Your mood: ' + ${thisUser.mood}"></p>
                     </div>
                 </div>
                 <div class="panel-body" style="height: 390px; overflow-y: scroll; overflow: auto">
@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="media-body" style="text-align: left">
                                         <h4 class="media-heading f-nickname" text="dude" th:text="${user.uName}"></h4>
-                                        <p class="text-danger f-signature" text="time: DD.MM.YY" >mood: Movies</p>
+                                        <p class="text-danger f-signature" text="time: DD.MM.YY" th:text="'Current mood: + ${user.mood}'"></p>
                                         <p class="hidden f-username" text="dude">anoy</p>
                                     </div>
                                 </a>
@@ -122,7 +122,7 @@
         <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title" th:text="'['+ ${thishub.name} + '] - [' "><span class="glyphicon glyphicon-console"></span> <span id="target">Everyone</span>]</h3>
+                    <h3 class="panel-title" th:text="'['+ ${thishub.name} + '] - [' + ${thishub.description}"><span class="glyphicon glyphicon-console"></span> <span id="target">Everyone</span>]</h3>
                 </div>
                 <div class="panel-body" style="height: 380px; width:350px; overflow-y: scroll; overflow: auto" id="chatWindow">
                     <div th:switch="${messages}">
@@ -131,11 +131,11 @@
 
                             </ul>
                             <ul th:case="*" class="message-area">
-                            <li th:each="message : ${messages}">
-                                <h4 th:text="${message.sender}"></h4>
-                                <p th:text="${message.content}"></p>
-                            </li>
-                        </ul>
+                                <li th:each="message : ${messages}">
+                                    <h4 th:text="${message.sender}"></h4>
+                                    <p th:text="${message.content}"></p>
+                                </li>
+                            </ul>
 
 
                     </div>
@@ -149,7 +149,10 @@
                     <input type="text" class="form-control" placeholder="Message" id="message-input">
                 </div>
                 <div class="col-xs-3 col-md-2">
-                    <button class="btn btn-primary btn-block" id="send-button"><span class="glyphicon glyphicon-send"></span> Send</button>
+                    <button class="btn btn-primary btn-block" id="send-button" ><span class="glyphicon glyphicon-send"></span> Send</button>
+                </div>
+                <div id="hubID" th:class="${thishub.channelId}">
+
                 </div>
             </div>
         </div>
@@ -169,28 +172,44 @@
                     <h3 class="panel-title">
                         <div class="row">
                             <div class="col-md-4 glyphicon glyphicon-home"> Hubs</div>
-                            <div class="col-md-4 col-md-offset-4 btn btn-default" href="#" role="button">Create Hub</div>
+                            <div class="col-md-4 col-md-offset-4">
+                                <a class="btn btn-default" href="/createhub" role="button">Create Hub</a>
+                            </div>
                         </div>
                     </h3>
                 </div>
                 <div class="panel-body" style="height: 390px; overflow-y: scroll; overflow: auto">
 
-                    <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item">
-                            <i class="glyphicon glyphicon-th-large"></i> Hub1
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="glyphicon glyphicon-th-large"></i> Hub2
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="glyphicon glyphicon-th-large"></i> Hub3
-                        </a>
+                    <div class="list-group list-group-flush" th:switch="${hubs}">
+                        <div th:case="null">
+                            <p>No hubs! </p>
+                        </div>
+                        <div th:case="*">
+                            <div th:each="hub : ${hubs}">
+                                <a th:href="'/chat/c' + ${hub.id}" class="list-group-item" >
+                                    <i class="glyphicon glyphicon-th-large"></i><span th:text="${hub.name} + ': ' + ${hub.interest}"></span>
+                                </a>
+
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
 
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <form action="#" th:action="@{/changemood}" th:object="${mood}" method="post" id="moodform">
+                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Mood">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </form>
+            <div class="input-group col-md-6 col-md-offset-3">
+                <button type="submit" form="moodform" class="btn btn-primary btn-block">Change Your Mood</button>
+            </div>
+        </div>
     </div>
 
 </div>

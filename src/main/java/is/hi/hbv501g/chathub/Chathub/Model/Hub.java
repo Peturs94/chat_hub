@@ -18,16 +18,19 @@ public class Hub {
     private long id;
     private String channelId;
     private String channelType;
+    private String password;
+
     public Hub(){
 
     }
 
-    public Hub(String name, String interest, String description, String channelType, String channelId) {
+    public Hub(String name, String interest, String description, String channelType, String channelId, String password) {
         this.name = name;
         this.interest = interest;
         this.description = description;
         this.channelType = channelType;
         this.channelId = channelId;
+        this.password = password;
     }
 
     public String getName() {
@@ -63,6 +66,9 @@ public class Hub {
     }
 
     public String getChannelId() {
+        if(channelId == null){
+            return channelType + id;
+        }
         return channelId;
     }
 
@@ -76,5 +82,13 @@ public class Hub {
 
     public void setChannelType(String channelType) {
         this.channelType = channelType;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

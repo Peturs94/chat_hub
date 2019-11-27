@@ -1,8 +1,9 @@
 package is.hi.hbv501g.chathub.Chathub.Controller;
 
 import is.hi.hbv501g.chathub.Chathub.Model.Hub;
-import is.hi.hbv501g.chathub.Chathub.Service.HubService;
-import is.hi.hbv501g.chathub.Chathub.Service.MessageService;
+import is.hi.hbv501g.chathub.Chathub.service.HubService;
+import is.hi.hbv501g.chathub.Chathub.service.MessageService;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -29,18 +31,24 @@ public class HubController {
         if(result.hasErrors()){
             return "createhub";
         }
+        String name = hub.getName();
+        String interest = hub.getInterest();
+        String description = hub.getDescription();
+        String channeltype = "c";
+        String password = hub.getPassword();
+        Hub newHub = new Hub(name, interest, description, channeltype, null, password);
+        hubService.save(newHub);
 
-        hubService.save(hub);
-        model.addAttribute("thishub", hubService.findById(0));
-
-        model.addAttribute("messages", messageService.findByChannelId("0"));
-        model.addAttribute("hubs", hubService.findAll());
         return "redirect:/";
     }
 
     // fá formið til að creata
     @RequestMapping(value = "/createhub", method = RequestMethod.GET)
-    public String createHubForm(Hub hub){
+    public String createHubForm(Hub hub, HttpSession session, Model model){
+        if(session.getAttribute("loggedInUser") == null){
+            return "redirect:/";
+        }
+        model.addAttribute("response", "data");
         return "createhub";
     }
 }

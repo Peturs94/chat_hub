@@ -1,4 +1,4 @@
-package is.hi.hbv501g.chathub.Chathub.Service;
+package is.hi.hbv501g.chathub.Chathub.service;
 
 import is.hi.hbv501g.chathub.Chathub.Model.Hub;
 
@@ -9,5 +9,6 @@ public interface HubService {
     Hub save(Hub hub);
     Optional<Hub> findById(long id);
     List<Hub> findAll();
-    Optional<Hub> findByChannelId(String channelId);
+    Hub findByChannelId(String channelId);
+    boolean exists(String channelId);
 }

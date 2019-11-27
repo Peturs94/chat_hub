@@ -1,7 +1,8 @@
 package is.hi.hbv501g.chathub.Chathub.Controller;
 
+import com.sun.xml.internal.ws.resources.HttpserverMessages;
 import is.hi.hbv501g.chathub.Chathub.Model.User;
-import is.hi.hbv501g.chathub.Chathub.Service.UserService;
+import is.hi.hbv501g.chathub.Chathub.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +22,16 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGet(User user){
+    public String loginGet(User user, Model model, HttpSession session){
+        if(session.getAttribute("loggedInUser") != null){
+            return "redirect:/chat";
+        }
+        model.addAttribute("response", "nodata");
         return "login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPost(@Valid User user, BindingResult result, Model model, HttpSession session){
+    public String loginPost(@Valid User user, BindingResult result, HttpSession session){
         //Stuff
         if(result.hasErrors()){
             // model msg þar sem stendur að ehv hafi verið rangt
@@ -49,7 +54,11 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signupGet(User user){
+    public String signupGet(User user, Model model, HttpSession session){
+        if(session.getAttribute("loggedInUser")!= null){
+            return "redirect:/chat";
+        }
+        model.addAttribute("response", "nodata");
         return "signup";
     }
 
@@ -61,6 +70,7 @@ public class LoginController {
         }
         User exists = userService.findByuName(user.getuName());
         if(exists == null){
+            User user1 = new User(user.getuName(), user.getPassword(), null);
             userService.save(user);
         }
         else {

@@ -3,7 +3,7 @@ package is.hi.hbv501g.chathub.Chathub.Controller;
 
 import is.hi.hbv501g.chathub.Chathub.Model.ChatMessage;
 import is.hi.hbv501g.chathub.Chathub.Model.User;
-import is.hi.hbv501g.chathub.Chathub.Service.MessageService;
+import is.hi.hbv501g.chathub.Chathub.service.MessageService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -30,14 +30,13 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     public void sendMessage(@Payload JSONObject obj, SimpMessageHeaderAccessor headerAccessor){
         ChatMessage.MessageType type = ChatMessage.MessageType.valueOf((String) obj.get("type"));
-//        String sender = (String) obj.get("sender");
         System.out.println(obj.get("sender"));
-        String sender = "Arni";
+        String sender = (String) obj.get("sender");
         String content = (String) obj.get("content");
         String channelId = (String) obj.get("channelId");
+        System.out.println("ChannelId = " + channelId);
         ChatMessage msg = new ChatMessage(type, content, sender, channelId);
         msgService.save(msg);
-        //System.out.println("úr sendMessage chatcontroller " + (iMessage.getChannelId()));
         messagingTemplate.convertAndSend("/topic/public/" + channelId , obj);
     }
 
@@ -52,8 +51,7 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", sender);
         headerAccessor.getSessionAttributes().put("channelId", channelId);
         ChatMessage msg = new ChatMessage(type, content, sender, channelId);
-        msgService.save(msg);
-        // ekki seiva þetta msg
+
         messagingTemplate.convertAndSend("/topic/public/" + channelId, obj);
     }
 

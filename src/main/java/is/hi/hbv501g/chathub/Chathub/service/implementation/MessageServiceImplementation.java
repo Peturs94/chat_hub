@@ -1,8 +1,8 @@
-package is.hi.hbv501g.chathub.Chathub.Service.Implementation;
+package is.hi.hbv501g.chathub.Chathub.service.implementation;
 
 import is.hi.hbv501g.chathub.Chathub.Model.ChatMessage;
-import is.hi.hbv501g.chathub.Chathub.Repository.MessageRepository;
-import is.hi.hbv501g.chathub.Chathub.Service.MessageService;
+import is.hi.hbv501g.chathub.Chathub.repository.MessageRepository;
+import is.hi.hbv501g.chathub.Chathub.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +26,6 @@ public class MessageServiceImplementation implements MessageService {
     public List<ChatMessage> findByChannelId(String id) {
         return repository.findByChannelId(id);
     }
+
+
 }

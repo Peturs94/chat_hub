@@ -8,6 +8,7 @@ var chatWindow = document.querySelector("#chatWindow");
 //var usernameForm = document.querySelector("#usernameForm");
 var messageArea = document.querySelector(".message-area");
 var sendButton = document.querySelector("#send-button");
+var hubid = document.querySelector("#hubID");
 
 var stompClient = null;
 var username = null;
@@ -32,7 +33,7 @@ function connect(event) {
 
 function onConnected(){
     // Subscribe to the public topic
-    hubId = sendButton.className;
+    hubId = hubid.className;
     console.log("/topic/public/" + hubId);
     var sub1 = stompClient.subscribe("/topic/public/" + hubId, onMessageReceived);
 

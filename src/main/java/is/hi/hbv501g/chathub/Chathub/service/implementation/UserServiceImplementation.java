@@ -1,13 +1,13 @@
-package is.hi.hbv501g.chathub.Chathub.Service.Implementation;
+package is.hi.hbv501g.chathub.Chathub.service.implementation;
 
 import is.hi.hbv501g.chathub.Chathub.Model.User;
-import is.hi.hbv501g.chathub.Chathub.Repository.UserRepository;
-import is.hi.hbv501g.chathub.Chathub.Service.UserService;
+import is.hi.hbv501g.chathub.Chathub.repository.UserRepository;
+import is.hi.hbv501g.chathub.Chathub.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -25,8 +25,15 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
-        return repository.findAll();
+    public List<User> findAll(User thisUser) {
+        List<User> allUsers = repository.findAll();
+        List<User> newUsers = new ArrayList<User>();
+        for(User user : allUsers){
+            if(!thisUser.getuName().equals(user.getuName())){
+                newUsers.add(user);
+            }
+        }
+        return newUsers;
     }
 
     @Override

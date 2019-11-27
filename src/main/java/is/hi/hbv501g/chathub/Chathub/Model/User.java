@@ -13,6 +13,7 @@ public class User {
     private long id;
     private String uName;
     private String password;
+    private String mood;
     //Friends
     // hubs?
 
@@ -20,9 +21,10 @@ public class User {
 
     }
 
-    public User(String uName, String password){
+    public User(String uName, String password, String mood){
         this.uName = uName;
         this.password = password;
+        this.mood=mood;
 
     }
 
@@ -48,5 +50,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMood() {
+        if(mood == null) return "Anything";
+        return mood;
+    }
+
+    public void setMood(String mood) {
+        this.mood = mood;
     }
 }

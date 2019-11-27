@@ -1,11 +1,12 @@
-package is.hi.hbv501g.chathub.Chathub.Service.Implementation;
+package is.hi.hbv501g.chathub.Chathub.service.implementation;
 
 import is.hi.hbv501g.chathub.Chathub.Model.Hub;
-import is.hi.hbv501g.chathub.Chathub.Repository.HubRepository;
-import is.hi.hbv501g.chathub.Chathub.Service.HubService;
+import is.hi.hbv501g.chathub.Chathub.repository.HubRepository;
+import is.hi.hbv501g.chathub.Chathub.service.HubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,11 +32,27 @@ public class HubServiceImplementation implements HubService {
 
     @Override
     public List<Hub> findAll() {
-        return repository.findAll();
+        List<Hub> hubs = repository.findAll();
+        List<Hub> newHubs = new ArrayList<Hub>();
+        for(Hub hub : hubs){
+            if(hub.getChannelType() =="c"){
+                newHubs.add(hub);
+            }
+        }
+        return newHubs;
     }
 
     @Override
-    public Optional<Hub> findByChannelId(String channelId) {
+    public Hub findByChannelId(String channelId) {
         return repository.findByChannelId(channelId);
+    }
+
+    @Override
+    public boolean exists(String channelId) {
+        Hub thisHub = repository.findByChannelId(channelId);
+        if(thisHub != null){
+            return true;
+        }
+        return false;
     }
 }

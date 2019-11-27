@@ -1,4 +1,4 @@
-package is.hi.hbv501g.chathub.Chathub.Repository;
+package is.hi.hbv501g.chathub.Chathub.repository;
 
 import is.hi.hbv501g.chathub.Chathub.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
