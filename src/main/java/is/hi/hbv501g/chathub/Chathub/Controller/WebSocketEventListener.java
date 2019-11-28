@@ -24,6 +24,7 @@ public class WebSocketEventListener {
         logger.info("Received a new web socket connection");
     }
 
+    // Should record when a user leaves a hub but needs some fixing.
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event){
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
@@ -37,7 +38,7 @@ public class WebSocketEventListener {
             chatMessage.setType(ChatMessage.MessageType.LEAVE);
             chatMessage.setSender(username);
 
-            //Skoða convert and send to user method til að broadcasta EKKI
+
             messagingTemplate.convertAndSend("/topic/public" + channelId, chatMessage);
         }
 

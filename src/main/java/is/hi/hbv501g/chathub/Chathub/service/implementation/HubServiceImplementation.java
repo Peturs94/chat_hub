@@ -30,6 +30,8 @@ public class HubServiceImplementation implements HubService {
         return repository.findById(id);
     }
 
+    // Gets all hubs
+    // Returns only public hubs
     @Override
     public List<Hub> findAll() {
         List<Hub> hubs = repository.findAll();
@@ -47,6 +49,7 @@ public class HubServiceImplementation implements HubService {
         return repository.findByChannelId(channelId);
     }
 
+    //Checks if hub exists by channelId
     @Override
     public boolean exists(String channelId) {
         Hub thisHub = repository.findByChannelId(channelId);

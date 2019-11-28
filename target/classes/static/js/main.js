@@ -14,30 +14,24 @@ var stompClient = null;
 var username = null;
 var hubId = null;
 
-
+// On window.load:
+// create Stompclient, and websocket connection.
 function connect(event) {
-    username = document.querySelector("#username").innerHTML;
-
-   // if(username){
-        //usernamePage.style.display = "none";
-        //chatWindow.classList.remove("container-fluid");
-
+        username = document.querySelector("#username").innerHTML;
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
-   // }
     event.preventDefault();
 }
 
-
+// Sends a join message to a subscribed websocket topic
 function onConnected(){
-    // Subscribe to the public topic
+    // Subscribe to topic/public/{hubId}
     hubId = hubid.className;
     console.log("/topic/public/" + hubId);
     var sub1 = stompClient.subscribe("/topic/public/" + hubId, onMessageReceived);
 
-    // Tell your username to the server
     stompClient.send("/app/chat.addUser",
         {},
         JSON.stringify({sender: username,
@@ -45,16 +39,14 @@ function onConnected(){
             type: "JOIN" })
     );
 
-    //connectingElement.style.display = "none";
 }
 
+// Prints an error message if websocket connection cannot be established.
 function onError(error) {
-    //connectingElement.textContent = "Could not connect to websocket server. PLease refresh";
-    //connectingElement.style.color = "red";
     console.log(error);
 }
 
-
+// handler for sending messages to the subscribed topic.
 function sendMessage(event) {
 
     var messageContent = messageInput.value.trim();
@@ -70,11 +62,11 @@ function sendMessage(event) {
         messageInput.value = "";
     }
     event.preventDefault();
-    // hér er einhvað í gangi og í onmessagereceived.
 }
 
 
-
+// Handler for receiving messages, Joined messages and chat messages,
+// prints the received messages on chatwindow.
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
 
@@ -82,11 +74,11 @@ function onMessageReceived(payload) {
 
     if(message.type === "JOIN") {
         message.content = message.sender + " joined!";
-    } else if (message.type === 'LEAVE') {
-        message.content = message.sender + ' left!';
-    } else {
-
-
+    }
+    else if(message.type === "LEAVE"){
+        message.content = message.sender + " left!";
+    }
+    else {
         var usernameElement = document.createElement('h4');
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);

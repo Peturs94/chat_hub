@@ -24,6 +24,8 @@ public class UserServiceImplementation implements UserService {
         return repository.save(user);
     }
 
+    // Gets list of all Users,
+    // Returns list of all Users except the logged in user.
     @Override
     public List<User> findAll(User thisUser) {
         List<User> allUsers = repository.findAll();
@@ -36,6 +38,7 @@ public class UserServiceImplementation implements UserService {
         return newUsers;
     }
 
+    // Searches for a user with the username uName.
     @Override
     public User findByuName(String uName) {
         return repository.findByuName(uName);
@@ -46,6 +49,9 @@ public class UserServiceImplementation implements UserService {
         repository.delete(user);
     }
 
+    //Login checker.
+    // checks if the User exists and therefore if passwords match
+    // returns the user if login was successful.
     @Override
     public User login(User user) {
         User exists = repository.findByuName(user.getuName());

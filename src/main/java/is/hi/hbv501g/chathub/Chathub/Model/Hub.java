@@ -65,6 +65,8 @@ public class Hub {
         this.id = id;
     }
 
+    // If channelId is null, then hub is public
+    // public hubs have prefix c and then their id
     public String getChannelId() {
         if(channelId == null){
             return channelType + id;

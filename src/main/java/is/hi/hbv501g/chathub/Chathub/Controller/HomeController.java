@@ -41,10 +41,11 @@ public class HomeController {
 
 
 
-
+    // Detecs if a user is logged in,
+    // if not, redirects to login-page.
+    // if so, returns hub view with hub "main".
     @RequestMapping(value = "/chat", method = RequestMethod.GET)
     public String Chat(Mood mood, HttpSession session, Model model){
-        // 11111 fyrir public msgs.
         if(session.getAttribute("loggedInUser") == null){
             return "redirect:/login";
         }
@@ -57,6 +58,11 @@ public class HomeController {
         model.addAttribute("response", "data");
         return "chat";
     }
+
+    // Returns the Hub view to chat.
+    // Redirects to the login-page if no logged in user is detected.
+    // If first character in {id} is c -> then hub is public and should be already created.
+    // otherwise it is a private hub and we create a private hub if it is not already created.
 
     @RequestMapping(value = "/chat/{id}", method = RequestMethod.GET)
     public String getHubMsgTemplate(@PathVariable("id") String id, Mood mood, HttpSession session, Model model){
@@ -104,6 +110,18 @@ public class HomeController {
         user.setMood(newMood);
         userService.save(user);
         return "redirect:/chat";
+    }
+
+    // Generates some data to work with.
+    @RequestMapping("/makedata")
+    public String MakeData(){
+        hubService.save(new Hub("The movie chat", "Movies, Actors", "Everything about movies and actors", "c", null, "pass"));
+        hubService.save(new Hub("Cooking", "Cooking, Recipes", "Hub with everything related to cooking!", "c", null, "pass"));
+        userService.save(new User("John", "pass", "Tesla Cybertruck"));
+        userService.save(new User("Jessie", "pass", "U.S politics"));
+        userService.save(new User("Jessica", "pass", "The new Kanye record"));
+        return "redirect:/chat";
+
     }
 
 

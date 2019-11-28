@@ -32,18 +32,14 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(@Valid User user, BindingResult result, HttpSession session){
-        //Stuff
         if(result.hasErrors()){
-            // model msg þar sem stendur að ehv hafi verið rangt
             return "login";
         }
         User exists = userService.login(user);
         if(exists != null){
             session.setAttribute("loggedInUser", exists);
-            // breyta þessu í /chat og hafa redirect:/ þar ef enginn loggedinuser.
             return "redirect:/chat";
         }
-        // msg með villuboðum um að notendanafn eða pw sé rangt.
         return "redirect:/login";
     }
 

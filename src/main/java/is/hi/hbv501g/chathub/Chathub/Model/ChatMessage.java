@@ -16,8 +16,6 @@ public class ChatMessage {
     private String content;
     private String sender;
     private String channelId;
-    //Bæta við timestamp!
-
 
     public enum MessageType {
         CHAT,

@@ -1,5 +1,6 @@
 package is.hi.hbv501g.chathub.Chathub.Model;
 
+// Data transfer object used to change the users mood.
 public class Mood {
 
     private String name;

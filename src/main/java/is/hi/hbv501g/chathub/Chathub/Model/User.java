@@ -14,8 +14,7 @@ public class User {
     private String uName;
     private String password;
     private String mood;
-    //Friends
-    // hubs?
+
 
     public User(){
 
@@ -52,6 +51,8 @@ public class User {
         this.password = password;
     }
 
+    // The user doesn't choose it's mood on instantiation
+    // so initial mood will be "anything"
     public String getMood() {
         if(mood == null) return "Anything";
         return mood;

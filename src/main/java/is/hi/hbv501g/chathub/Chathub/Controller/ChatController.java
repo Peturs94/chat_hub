@@ -2,7 +2,6 @@ package is.hi.hbv501g.chathub.Chathub.Controller;
 
 
 import is.hi.hbv501g.chathub.Chathub.Model.ChatMessage;
-import is.hi.hbv501g.chathub.Chathub.Model.User;
 import is.hi.hbv501g.chathub.Chathub.service.MessageService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class ChatController {
@@ -27,6 +25,9 @@ public class ChatController {
         this.msgService = msgService;
     }
 
+    // Backend arrival for messages sent from the frontend.
+    // Receives a "data transfer object" JSONobject obj and is turned to a Chatmessage object and saved.
+    // The data transfer object is then sent to the destination it was supposed to be sent to.
     @MessageMapping("/chat.sendMessage")
     public void sendMessage(@Payload JSONObject obj, SimpMessageHeaderAccessor headerAccessor){
         ChatMessage.MessageType type = ChatMessage.MessageType.valueOf((String) obj.get("type"));
@@ -40,17 +41,16 @@ public class ChatController {
         messagingTemplate.convertAndSend("/topic/public/" + channelId , obj);
     }
 
+
+    // Adds Username in websocket session.
     @MessageMapping("/chat.addUser")
     public void addUser(@Payload JSONObject obj, SimpMessageHeaderAccessor headerAccessor){
-        //add Username in websocket session.
+
         String sender = (String) obj.get("sender");
         String channelId = (String) obj.get("channelId");
-        ChatMessage.MessageType type = ChatMessage.MessageType.valueOf((String) obj.get("type"));
-        String content = (String) obj.get("content");
 
         headerAccessor.getSessionAttributes().put("username", sender);
         headerAccessor.getSessionAttributes().put("channelId", channelId);
-        ChatMessage msg = new ChatMessage(type, content, sender, channelId);
 
         messagingTemplate.convertAndSend("/topic/public/" + channelId, obj);
     }

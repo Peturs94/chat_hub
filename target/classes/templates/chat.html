@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="media-body" style="text-align: left">
                                         <h4 class="media-heading f-nickname" text="dude" th:text="${user.uName}"></h4>
-                                        <p class="text-danger f-signature" text="time: DD.MM.YY" th:text="'Current mood: + ${user.mood}'"></p>
+                                        <p class="text-danger f-signature" text="time: DD.MM.YY" th:text="'Current mood: ' + ${user.mood}"></p>
                                         <p class="hidden f-username" text="dude">anoy</p>
                                     </div>
                                 </a>
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="media-body" style="text-align: left">
                                         <h4 class="media-heading f-nickname" text="dude" th:text="${user.uName}"></h4>
-                                        <p class="text-danger f-signature" text="time: DD.MM.YY" >mood: Movies</p>
+                                        <p class="text-danger f-signature" text="time: DD.MM.YY" th:text="'Current mood: ' + ${user.mood}"></p>
                                         <p class="hidden f-username" text="dude">anoy</p>
                                     </div>
                                 </a>
